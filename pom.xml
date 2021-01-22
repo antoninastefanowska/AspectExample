@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>antonina</groupId>
+    <artifactId>AspectApp</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <java-version>1.8</java-version>
+        <org.aspectj-version>1.9.6</org.aspectj-version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${org.aspectj-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+    	<sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+    	<pluginManagement>
+	        <plugins>
+	            <plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-compiler-plugin</artifactId>
+	                <configuration>
+	                    <source>${java-version}</source>
+	                    <target>${java-version}</target>
+	                </configuration>
+	            </plugin>
+	            <plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-dependency-plugin</artifactId>
+	                <executions>
+	                    <execution>
+	                        <id>install</id>
+	                        <phase>install</phase>
+	                        <goals>
+	                            <goal>sources</goal>
+	                        </goals>
+	                    </execution>
+	                </executions>
+	            </plugin>
+	            <plugin>
+	                <groupId>org.codehaus.mojo</groupId>
+	                <artifactId>aspectj-maven-plugin</artifactId>
+	                <version>1.2</version>
+	                <dependencies>
+	                    <dependency>
+	                        <groupId>org.aspectj</groupId>
+	                        <artifactId>aspectjrt</artifactId>
+	                        <version>${org.aspectj-version}</version>
+	                    </dependency>
+	                    <dependency>
+	                        <groupId>org.aspectj</groupId>
+	                        <artifactId>aspectjtools</artifactId>
+	                        <version>${org.aspectj-version}</version>
+	                    </dependency>
+	                </dependencies>
+	                <executions>
+	                    <execution>
+	                        <goals>
+	                            <goal>compile</goal>
+	                            <goal>test-compile</goal>
+	                        </goals>
+	                    </execution>
+	                </executions>
+	                <configuration>
+	                    <outxml>true</outxml>
+	                    <source>${java-version}</source>
+	                    <target>${java-version}</target>
+	                </configuration>
+	            </plugin>
+	        </plugins>
+    	</pluginManagement>
+    </build>
+</project>
